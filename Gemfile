@@ -42,3 +42,10 @@ gem 'spring',        group: :development
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "rspec-rails", ">= 2.0.1", group: [:development, :test]
+
+# consuming APIs
+gem "httparty"
+
+group :development do
+  gem "awesome_print"
+end
