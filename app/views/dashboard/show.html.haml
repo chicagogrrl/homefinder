@@ -1,0 +1,23 @@
+%h1
+  #{@search_listing["address"]["line1"]} #{@search_listing["address"]["line2"]}
+
+- if @search_listing["photos"]
+  - @search_listing["photos"].each do |photo|
+    = image_tag photo["url"]
+
+%p
+  %br
+  = @search_listing["address"]["line1"]
+  = @search_listing["address"]["line2"]
+  %br
+  = @search_listing["address"]["city"]
+  = @search_listing["address"]["state"]
+  = @search_listing["address"]["zip"]
+
+%p
+  = @search_listing["description"]
+
+- if @search_listing["externalUrl"]
+  %p
+    = link_to @search_listing["externalUrl"]["label"], @search_listing["externalUrl"]["url"]
+

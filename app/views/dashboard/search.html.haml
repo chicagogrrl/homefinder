@@ -1,26 +1,20 @@
-%h1 Here's what you searched for
-
-%ul
-- params[:search].each do |key,value|
-  %li
-    %strong= key
-    = value
-
-%h2
-  Results
-  = 1 * @search_metadata["currentPage"]
-  to
-  = 20 * @search_metadata["currentPage"]
-
-
-
+.pull-right
+  %strong Total Results: #{@search_metadata["totalMatched"]}
+  = link_to "Return to Search Form", root_path, class: "btn"
+.pull-left
+  %h1
+    Results
+    = @start_num
+    to
+    = @end_num
 .clearfix
 
 - @search_listings.each_with_index do |listing, idx|
   - if idx % 4 == 0
     .clearfix
   .span2.well
-    = image_tag listing["primaryPhoto"]["url"]
+    = link_to dashboard_path(id: listing["id"]) do
+      = image_tag listing["primaryPhoto"].try(:[], "url")
     %br
     = listing["address"]["line1"]
     = listing["address"]["line2"]
@@ -28,5 +22,13 @@
     = listing["address"]["city"]
     = listing["address"]["state"]
     = listing["address"]["zip"]
+
+.clearfix
+- if @search_metadata["totalPages"].to_i > @search_options["page"]
+  = button_to search_dashboard_index_path, class: "btn btn-primary" do
+    Next Page
+    - @search_options.each do |key,value|
+      = hidden_field_tag "search[#{key}]", value
+    = hidden_field_tag "search[page]", @search_options["page"] + 1
 
 =# @search_listings.inspect
