@@ -37,7 +37,11 @@
 
       .row
         .span12
-          = bootstrap_flash
+          - flash.each do |key, value|
+            - unless value.blank? || !value.is_a?(String)
+              .alert.alert-block{class: "alert-#{key}"}
+                == <a class="close" data-dismiss="alert" href="#">×</a>
+                = value
           = yield
         / .span3
         /   .well.sidebar-nav

@@ -5,7 +5,15 @@ class DashboardController < ApplicationController
   end
 
   def search
+    if params[:search].try(:[], :area).blank?
+      redirect_to root_path, flash: {error: "No city or ZIP code was provided. Please search again."} and return
+    end
+
     @search = Homefinder::SearchRequest.retrieve(params[:search])
+    if @search["data"].blank?
+      redirect_to root_path, flash: {error: "No listings match your criteria. Please try again."} and return
+    end
+
     @search_metadata = @search["data"]["meta"]
     @search_listings = @search["data"]["listings"]
     @search_options = params[:search].merge(page: @search_metadata["currentPage"].to_i)
@@ -21,6 +29,10 @@ class DashboardController < ApplicationController
 
   def show
     @search = Homefinder::SearchRequest.retrieve_single(params[:id])
+    if @search["data"].blank?
+      redirect_to root_path, flash: {error: "Listing not found."} and return
+    end
+
     @search_metadata = @search["data"]["meta"]
     @search_listing = @search["data"]["listings"][0]
   end
