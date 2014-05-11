@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: homefinder_production
-  username: homefinder
-  password: <%= ENV['HOMEFINDER_DATABASE_PASSWORD'] %>
