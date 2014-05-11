@@ -1,6 +1,6 @@
 module Homefinder::SearchRequest
   include HTTParty
-  API_KEY = YAML.load_file( "#{Rails.root}/config/homefinder.yml" )['default']['api_key']
+  API_KEY = ENV['HOMEFINDER_API_KEY']
   base_uri "http://services.homefinder.com/listingServices/search?apikey=#{API_KEY}"
 
   def self.retrieve params

@@ -1,2 +1,0 @@
-default:
-  api_key: <%= ENV['HOMEFINDER_API_KEY'] %>
