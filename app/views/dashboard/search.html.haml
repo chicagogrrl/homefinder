@@ -1,2 +1,32 @@
-%h1 Here's what you searched for:
-= @search.inspect
+%h1 Here's what you searched for
+
+%ul
+- params[:search].each do |key,value|
+  %li
+    %strong= key
+    = value
+
+%h2
+  Results
+  = 1 * @search_metadata["currentPage"]
+  to
+  = 20 * @search_metadata["currentPage"]
+
+
+
+.clearfix
+
+- @search_listings.each_with_index do |listing, idx|
+  - if idx % 4 == 0
+    .clearfix
+  .span2.well
+    = image_tag listing["primaryPhoto"]["url"]
+    %br
+    = listing["address"]["line1"]
+    = listing["address"]["line2"]
+    %br
+    = listing["address"]["city"]
+    = listing["address"]["state"]
+    = listing["address"]["zip"]
+
+=# @search_listings.inspect

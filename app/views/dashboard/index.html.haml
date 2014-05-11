@@ -1,29 +1,38 @@
 %h1 Let's find a home!
 %p Fill in the form below. Required fields are marked.
 
-= form_tag(search_dashboard_index_path) do
-  %p
-    = label_tag :search_area, "City/State or ZIP Code"
-    = text_field_tag "search[area]"
-  %p
-    = label_tag :search_price_minimum, "Price Range"
-    = text_field_tag "search[price][min]"
-    = text_field_tag "search[price][max]"
-  %p
-    = label_tag :search_bed_minimum, "Number of Bedrooms"
-    = text_field_tag "search[bed][min]"
-    = text_field_tag "search[bed][max]"
-  %p
-    = label_tag :search_bath_minimum, "Number of Bathrooms"
-    = text_field_tag "search[bath][min]"
-    = text_field_tag "search[bath][max]"
-
-  = field_set_tag "The Most Important Questions" do
+.well
+  = form_tag(search_dashboard_index_path, class: "form-horizontal") do
     %p
-      = label_tag :search_are_cats_allowed, "Are Cats Allowed?"
-      = check_box_tag "search[are_cats_allowed]"
+      = label_tag :search_area, "City/State or ZIP Code*"
+      = text_field_tag "search[area]"
     %p
-      = label_tag :search_are_dogs_allowed, "Are Dogs Allowed?"
-      = check_box_tag "search[are_dogs_allowed]"
+      = label_tag :search_price_min, "Price Range"
+      (minimum)
+      = text_field_tag "search[price][min]"
+      (maximum)
+      = text_field_tag "search[price][max]"
+    %p
+      = label_tag :search_bed_min, "Number of Bedrooms"
+      (minimum)
+      = text_field_tag "search[bed][min]"
+      (maximum)
+      = text_field_tag "search[bed][max]"
+    %p
+      = label_tag :search_bath_min, "Number of Bathrooms"
+      (minimum)
+      = text_field_tag "search[bath][min]"
+      (maximum)
+      = text_field_tag "search[bath][max]"
 
-  = submit_tag "Search"
+    = field_set_tag "The Most Important Questions" do
+      %p
+        = label_tag :search_are_cats_allowed do
+          Are Cats Allowed?
+          = check_box_tag "search[areCatsAllowed]"
+      %p
+        = label_tag :search_are_dogs_allowed do
+          Are Dogs Allowed?
+          = check_box_tag "search[areDogsAllowed]"
+
+    = submit_tag "Search"

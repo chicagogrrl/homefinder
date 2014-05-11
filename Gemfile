@@ -46,6 +46,9 @@ gem "rspec-rails", ">= 2.0.1", group: [:development, :test]
 # consuming APIs
 gem "httparty"
 
+# some styling
+gem "twitter-bootstrap-rails"
+
 group :development do
   gem "awesome_print"
 end
