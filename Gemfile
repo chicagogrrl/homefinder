@@ -52,3 +52,6 @@ gem "twitter-bootstrap-rails"
 group :development do
   gem "awesome_print"
 end
+
+# heroku
+gem 'rails_12factor', group: :production
