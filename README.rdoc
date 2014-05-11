@@ -6,4 +6,4 @@ This application is a short test of utilizing the HomeFinder.com API.
 
 * Rails version: 4.1.1
 
-* Installation: Clone the repo, run "bundle install", and then "rails server"
+* Installation: Clone the repo, add your homefinder API key in the config/homefinder.yml file, run "bundle install", "rake:db:create", and then "rails server"
